@@ -1,0 +1,20 @@
+# Use the latest Node.js 24 development-friendly image
+FROM node:24-alpine
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy package.json and package-lock.json first (for better caching)
+COPY package*.json ./
+
+# Install all dependencies (including dev dependencies)
+RUN npm install
+
+# Copy the rest of your project
+COPY . .
+
+# Expose the port your dev server runs on
+EXPOSE 3000
+
+# Run the dev server with nodemon + ts-node
+CMD ["npm", "run", "dev"]
