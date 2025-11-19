@@ -7,6 +7,10 @@ const app = express();
 
 const port = process.env.PORT;
 
-app.listen(port, () => {
+app.get('/', (req, res) => {
+  res.send('pranay pranasyh ');
+});
+
+app.listen((port), () => {
   console.log(`server running ${port}`);
 });
