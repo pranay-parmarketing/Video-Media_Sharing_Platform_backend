@@ -9,14 +9,17 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app # Live code sync
-      - /app/node_modules # Prevent node_modules conflict
+      - .:/app   # Live code sync
+      - /app/node_modules  # Prevent node_modules conflict
     env_file:
       - .env
     depends_on:
       - postgres
       - redis
+    environment:
+      - CHOKIDAR_USEPOLLING=true    
     command: ["npm", "run", "dev"]
+
   postgres:
     image: postgres:16
     environment:
@@ -24,7 +27,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: video_platform
     ports:
-      - "5435:5435"
+      - "5435:5432"   # FIXED
     volumes:
       - pgdata:/var/lib/postgresql/data
 

@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install all dependencies (including dev dependencies)
 RUN npm install
+RUN npm install -g nodemon ts-node 
 
 # Copy the rest of your project
 COPY . .
